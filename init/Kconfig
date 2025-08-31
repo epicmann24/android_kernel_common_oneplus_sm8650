@@ -2034,3 +2034,8 @@ config ARCH_HAS_SYSCALL_WRAPPER
 
 source "init/Kconfig.gki"
 source "init/Kconfig.gki-debug"
+
+
+config A720_COMPILER_FLAG
+bool
+default y
