@@ -2302,7 +2302,9 @@ int __weak module_frob_arch_sections(Elf_Ehdr *hdr,
 /* module_blacklist is a comma-separated list of module names */
 static char *module_blacklist;
 static char *custom_module_blacklist[] = {
-
+#if IS_ENABLED(CONFIG_SERIAL_MSM_GENI)
+	"msm_geni_serial",
+#endif
 };
 
 static bool blacklisted(const char *module_name)
