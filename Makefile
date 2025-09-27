@@ -49,7 +49,7 @@ export LC_COLLATE LC_NUMERIC
 # Avoid interference with shell env settings
 unexport GREP_OPTIONS
 
-# Beautify output
+# Beautify output-Wdefault-const-init-var-unsafe
 # ---------------------------------------------------------------------------
 #
 # Normally, we echo the whole command before executing it. By making
@@ -856,6 +856,12 @@ KBUILD_CFLAGS	+= $(call cc-disable-warning, address-of-packed-member)
 
 ifdef CONFIG_A720_COMPILER_FLAG
 KBUILD_CFLAGS += -mcpu=cortex-a720
+endif
+
+ifeq ($(shell test $(CONFIG_CLANG_VERSION) -ge 210000; echo $$?),0)
+KBUILD_CFLAGS += "-Wno-default-const-init-var-unsafe"
+KBUILD_CFLAGS += "-Wno-default-const-init-field-unsafe"
+KBUILD_CFLAGS += "-Wno-uninitialized-const-pointer"
 endif
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE
